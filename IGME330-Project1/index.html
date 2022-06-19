@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Visualized Hunger Games Simulator</title>
+        <script type="module" src="./src/loader.js"></script>
+        <link rel="stylesheet" type="text/css" href="./styles/default-styles.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">   
+    </head>
+    <body>
+        <h1 id="pageTitle">Visualized Hunger Games Simulator</h1>
+        <main>
+            <!-- container 1: contains canvas, fighter table, fighter form -->
+            <div id="container1">
+                <canvas id="canvo">
+                    Have you tried switching your browser?
+                </canvas>
+                <table id="fighterTable">
+                    <tr>
+                        <th>Fighters:</th>
+                    </tr>
+                </table>
+                <form method="post" id="fighterForm" action="./fighter.php" enctype="multipart/form-data" target="hiddenFrame">        
+                    <label id="fighterFormTitle">Fighter Submission:</label><br>
+                    <label for="fName">Fighter Name:</label>
+                    <input type="text" autocomplete="off" id="fName" name="fName"><br>
+                    <label for="fImageUpload">Fighter Image:</label>        
+                    <input type='file' id="fImageUpload" name="fImageUpload"/><br>
+                    <img id="fImage" src="#" alt="Fighter image.">
+                    <label id="imageError"></label><br>
+                    <label id="fSliders">Fighter Stats:</label><br>
+                    <div id="fSliderStats">
+                        <label for="fSpeed">Fighter Speed:</label> <label id="fSpeedLabel"></label><br>
+                        <input type="range" min="1" max="9" value="5" class="statSlider" id="fSpeed" name = "fSpeed">
+                        <label for="fHealth">Fighter Health:</label> <label id="fHealthLabel"></label><br>
+                        <input type="range" min="1" max="9" value="5" class="statSlider" id="fHealth" name="fHealth">
+                        <label for="fDamage">Fighter Damage:</label> <label id="fDamageLabel"></label><br>
+                        <input type="range" min="1" max="9" value="5" class="statSlider" id="fDamage" name="fDamage"><br>
+                        <label id="statError"></label><br>
+                        <br><label for="fColor">Fighter Color:</label>
+                        <select id="fColor" name="fColor">
+                            <option value="LightPink">Light Pink</option>
+                            <option value="DeepPink">Deep Pink</option>
+                            <option value="Tomato">Tomato</option>
+                            <option value="DarkOrange">Dark Orange</option>
+                            <option value="Yellow"> Yellow</option>
+                            <option value="Lavender">Lavender</option>
+                            <option value="Fuchsia">Fuchsia</option>
+                            <option value="MediumPurple">Medium Purple</option>
+                            <option value="Chartreuse">Chartreuse</option>
+                            <option value="LightGreen">Light Green</option>
+                            <option value="DarkSeaGreen">Dark Sea Green</option>
+                            <option value="LightCyan">Light Cyan</option>
+                            <option value="SteelBlue"> Steel Blue</option>
+                            <option value="RoyalBlue">Royal Blue</option>
+                            <option value="MistyRose">Misty Rose</option>
+                        </select><br>
+                    </div>
+                    <button id="fighterSubmit" >Submit Fighter</button>
+                </form>           
+                <iframe name="hiddenFrame" class="hide"></iframe>
+            </div>
+            <!-- container 2: contains game controls, fighter updates -->
+            <div id="container2">
+                <div id="gameControlContainer">
+                    <label for="mTerrain">Terrain Type:</label>
+                    <select id="mTerrain" name="mTerrain">
+                        <option value="#3CC335">Grass</option>
+                        <option value="#515151">Rock</option>
+                        <option value="#6FE5D7">Water</option>
+                    </select>
+                    <label for="tSize">Brush Size:</label> <br>
+                    <input type="range" min="1" max="3" value="1" id="tSize" name = "tSize"><br>
+                    <button id="randomizedFighter">Randomized Fighter</button>
+                    <button id="startButton">Start</button>
+                    <button id="pauseButton">Pause</button>
+                    <label for="dSpeed">Speed Controls</label><br>
+                    <input type="range" min="6" max="30" value="6" id="dSpeed" name = "dSpeed"><br>       
+                </div>
+                <div id="fighterUpdates">
+                    <p id="fighterUpdatesHeader">Fighter Updates:</p>
+                    <div class="listReverser">
+                        <ul id="fighterUpdateList">
+        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="iCollapsible">How to Play ▼ </button>
+            <div id="instructions">
+                <p>Welcome to the first annual Virtual Hunger Games!</p>
+                <p>Add custom fighters through the Fighter Submission form,
+                     or add premade ones through the Randomized Fighter button.</p>
+                <p>You can also control the layout of your arena by choosing a terrain
+                    in the Terrain Type dropdown. Slower fighters may have a tougher time
+                    overcoming more difficult terrains!</p>
+                <p>Once you have finished adding fighters, hit the Start button.</p>
+                <p>See arena news in the Fighter Update section,
+                    and check on specific fighters in the fighter table.</p>
+                <p>You may change the game speed using the Speed Controls,
+                    or pause the game at any point using the Pause button.</p>
+                <p>Refresh the page to start again.</p>
+                <p>May the odds be ever in your favor!</p> 
+            </div>
+        </main>
+        <footer>
+            <p>Created by Tommy Delp and Alessandro Fiorella for IGME-330, Spring 2021.</p>
+        </footer>
+    </body>
+</html>

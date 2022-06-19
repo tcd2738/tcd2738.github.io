@@ -1,0 +1,26 @@
+export default [
+    {
+        "name":"Tony",
+        "img":"./random/tony.jpg"
+    },
+    {
+        "name":"Andy",
+        "img":"./random/andy.jpg"
+    },
+    {
+        "name":"Alberto",
+        "img":"./random/alberto.jpg"
+    },
+    {
+        "name":"Sten",
+        "img":"./random/sten.jpg"
+    },
+    {
+        "name":"David",
+        "img":"./random/david.jpg"
+    },
+    {
+        "name":"Chris",
+        "img":"./random/chris.jpg"
+    }
+]
