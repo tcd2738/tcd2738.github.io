@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Stream Search</title>
+	<link rel="shortcut icon" type="image/jpg" href="./images/streamsearch-icon.png"/>
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/default-styles.css">
+
+	<!-- Load Mapbox and Mapbox CSS -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet'/>
+	<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+	<!-- Load polyfills to support older browsers -->
+	<script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+	<!-- Load Vue followed by BootstrapVue -->
+	<!-- <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script> -->
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+	<!-- Load the following for BootstrapVueIcons support -->
+	<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+
+	<!-- Embedded font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
+
+	<script type="module" src="src/app.js"></script>
+</head>
+<body>
+<div id="app">
+	<header>
+		<h1><img id="logo" src="images/streamsearch-icon.png" alt="Stream Search logo">Stream Search</h1>
+	</header>	
+	
+	<div id="masterFlex">
+		<section id="controlFavoritesContainer">
+			<div id="controlContainer">
+				<div id="searchContainer">
+					<p>Search for a Movie:</p>
+					<input type="text" v-model="searchterm">
+					<button class="btn btn-secondary" v-on:click="search">Go!</button><br>
+					<div id="searchType">
+						<input type="radio" name="searchType" value="service" v-model="searchType" v-on:change="lockUI" checked>
+						<label>Search by Service</label><br>
+						<input type="radio" name="searchType" value="country" v-model="searchType" v-on:change="lockUI">
+						<label>Search by Country</label><br>
+					</div>
+				</div>
+				
+				<div id="servicesContainer">
+					<p>Which service would you like to check?</p>
+					<div id="servicesButtons">
+						<button class="btn btn-secondary" v-on:click="[services=['Netflix','HBO Max','Disney Plus','Paramount Plus', 'Amazon Prime Video','Hulu','Apple TV Plus'], collectStreamingData()]">Check All</button>
+						<button class="btn btn-secondary" v-on:click="[services=[], collectStreamingData()]">Deselect All</button>
+					</div>
+					<input type="checkbox" name="serviceProvider" value="Netflix" v-model="services" v-on:change="collectStreamingData" checked>
+					<label>Netflix</label><br>
+					<input type="checkbox" name="serviceProvider" value="HBO Max" v-model="services" v-on:change="collectStreamingData">
+					<label>HBO Max</label><br>
+					<input type="checkbox" name="serviceProvider" value="Disney Plus" v-model="services" v-on:change="collectStreamingData">
+					<label>Disney Plus</label><br>
+					<input type="checkbox" name="serviceProvider" value="Paramount Plus" v-model="services" v-on:change="collectStreamingData">
+					<label>Paramount Plus</label><br>
+					<input type="checkbox" name="serviceProvider" value="Amazon Prime Video" v-model="services" v-on:change="collectStreamingData">
+					<label>Amazon Prime Video</label><br>
+					<input type="checkbox" name="serviceProvider" value="Hulu" v-model="services" v-on:change="collectStreamingData">
+					<label>Hulu</label><br>
+					<input type="checkbox" name="serviceProvider" value="Apple TV Plus" v-model="services" v-on:change="collectStreamingData">
+					<label>Apple TV Plus</label><br>
+				</div>
+				<div id="countryContainer" class="collapse">
+					<p>Which country would you like to check?</p>
+					<input type="radio" name="countrySelector" value="AR" v-model="country" v-on:change="collectStreamingData">
+					<label>AR</label><br>
+					<input type="radio" name="countrySelector" value="AT" v-model="country" v-on:change="collectStreamingData">
+					<label>AUT</label><br>
+					<input type="radio" name="countrySelector" value="AU" v-model="country" v-on:change="collectStreamingData">
+					<label>AU</label><br>
+					<input type="radio" name="countrySelector" value="BE" v-model="country" v-on:change="collectStreamingData">
+					<label>BE</label><br>
+					<input type="radio" name="countrySelector" value="BR" v-model="country" v-on:change="collectStreamingData">
+					<label>BR</label><br>
+					<input type="radio" name="countrySelector" value="CA" v-model="country" v-on:change="collectStreamingData">
+					<label>CAN</label><br>
+					<input type="radio" name="countrySelector" value="CH" v-model="country" v-on:change="collectStreamingData">
+					<label>CH</label><br>
+					<input type="radio" name="countrySelector" value="CL" v-model="country" v-on:change="collectStreamingData">
+					<label>CL</label><br>
+					<input type="radio" name="countrySelector" value="CO" v-model="country" v-on:change="collectStreamingData">
+					<label>CO</label><br>
+					<input type="radio" name="countrySelector" value="CZ" v-model="country" v-on:change="collectStreamingData">
+					<label>CZ</label><br>
+					<input type="radio" name="countrySelector" value="DE" v-model="country" v-on:change="collectStreamingData">
+					<label>DE</label><br>
+					<input type="radio" name="countrySelector" value="DK" v-model="country" v-on:change="collectStreamingData">
+					<label>DK</label><br>
+					<input type="radio" name="countrySelector" value="EC" v-model="country" v-on:change="collectStreamingData">
+					<label>EC</label><br>
+					<input type="radio" name="countrySelector" value="EE" v-model="country" v-on:change="collectStreamingData">
+					<label>EE</label><br>
+					<input type="radio" name="countrySelector" value="ES" v-model="country" v-on:change="collectStreamingData">
+					<label>ES</label><br>
+					<input type="radio" name="countrySelector" value="FI" v-model="country" v-on:change="collectStreamingData">
+					<label>FI</label><br>
+					<input type="radio" name="countrySelector" value="FR" v-model="country" v-on:change="collectStreamingData">
+					<label>FR</label><br>
+					<input type="radio" name="countrySelector" value="GB" v-model="country" v-on:change="collectStreamingData">
+					<label>GB</label><br>
+					<input type="radio" name="countrySelector" value="GR" v-model="country" v-on:change="collectStreamingData">
+					<label>GR</label><br>
+					<input type="radio" name="countrySelector" value="HU" v-model="country" v-on:change="collectStreamingData">
+					<label>HUN</label><br>
+					<input type="radio" name="countrySelector" value="ID" v-model="country" v-on:change="collectStreamingData">
+					<label>ID</label><br>
+					<input type="radio" name="countrySelector" value="IE" v-model="country" v-on:change="collectStreamingData">
+					<label>IE</label><br>
+					<input type="radio" name="countrySelector" value="IN" v-model="country" v-on:change="collectStreamingData">
+					<label>IN</label><br>
+					<input type="radio" name="countrySelector" value="IT" v-model="country" v-on:change="collectStreamingData">
+					<label>IT</label><br>
+					<input type="radio" name="countrySelector" value="JP" v-model="country" v-on:change="collectStreamingData">
+					<label>JP</label><br>
+					<input type="radio" name="countrySelector" value="KR" v-model="country" v-on:change="collectStreamingData">
+					<label>KR</label><br>
+					<input type="radio" name="countrySelector" value="LT" v-model="country" v-on:change="collectStreamingData">
+					<label>LT</label><br>
+					<input type="radio" name="countrySelector" value="LV" v-model="country" v-on:change="collectStreamingData">
+					<label>LV</label><br>
+					<input type="radio" name="countrySelector" value="MX" v-model="country" v-on:change="collectStreamingData">
+					<label>MX</label><br>
+					<input type="radio" name="countrySelector" value="MY" v-model="country" v-on:change="collectStreamingData">
+					<label>MY</label><br>
+					<input type="radio" name="countrySelector" value="NL" v-model="country" v-on:change="collectStreamingData">
+					<label>NL</label><br>
+					<input type="radio" name="countrySelector" value="NZ" v-model="country" v-on:change="collectStreamingData">
+					<label>NZ</label><br>
+					<input type="radio" name="countrySelector" value="PE" v-model="country" v-on:change="collectStreamingData">
+					<label>PE</label><br>
+					<input type="radio" name="countrySelector" value="PH" v-model="country" v-on:change="collectStreamingData">
+					<label>PH</label><br>
+					<input type="radio" name="countrySelector" value="PL" v-model="country" v-on:change="collectStreamingData">
+					<label>PL</label><br>
+					<input type="radio" name="countrySelector" value="PT" v-model="country" v-on:change="collectStreamingData">
+					<label>PT</label><br>
+					<input type="radio" name="countrySelector" value="RO" v-model="country" v-on:change="collectStreamingData">
+					<label>ROU</label><br>
+					<input type="radio" name="countrySelector" value="RU" v-model="country" v-on:change="collectStreamingData">
+					<label>RU</label><br>
+					<input type="radio" name="countrySelector" value="SE" v-model="country" v-on:change="collectStreamingData">
+					<label>SE</label><br>
+					<input type="radio" name="countrySelector" value="SG" v-model="country" v-on:change="collectStreamingData">
+					<label>SG</label><br>
+					<input type="radio" name="countrySelector" value="TH" v-model="country" v-on:change="collectStreamingData">
+					<label>TH</label><br>
+					<input type="radio" name="countrySelector" value="TR" v-model="country" v-on:change="collectStreamingData">
+					<label>TR</label><br>
+					<input type="radio" name="countrySelector" value="US" v-model="country" v-on:change="collectStreamingData" checked>
+					<label>US</label><br>
+					<input type="radio" name="countrySelector" value="VE" v-model="country" v-on:change="collectStreamingData">
+					<label>VE</label><br>
+					<input type="radio" name="countrySelector" value="ZA" v-model="country" v-on:change="collectStreamingData">
+					<label>ZA</label><br>
+				</div>
+				<button class="btn btn-secondary" id="resetButton" v-on:click="resetPage">Reset Site</button>
+			</div>
+			<div id="favoritesContainer">
+				<b>Your Favorites: </b>
+				<div v-for="movie of favoritedMovies">
+					<label id="favoriteMovieLabel" class="d-block text-truncate">{{movie}}</label>
+					<div class="float-right">
+						<button class="btn btn-secondary btn-sm" v-on:click="findFavorite(movie)">Access</button>
+						<button class="btn btn-secondary btn-sm" v-on:click="removeFavorite(movie)">Remove</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="movieMapContainer">
+			<div id="mapContainer">
+				<p v-if="searchType == 'service'">Available to stream on the selected services in the following countries:</p>
+				<p v-else>Available to stream on the following services in {{country}}:</p>
+				<div id='map' style='width: 500px; height: 450px;'></div>
+			</div>
+			<div id="movieContainer">
+				<button class="btn btn-secondary" id="favoriteButton" v-on:click="favoriteMovie">&#9733;</button>
+				<img v-if="loading" src="images/loading.gif" alt="Loading movie results!"/>
+				<img v-else id="movieImage" :src="posterURL" :alt='"Poster for " + movieTitle'/>
+				<h2>{{movieTitle}}</h2>
+				<b>User Score: {{userScore}}</b>
+				<p>{{overview}}</p>
+			</div>
+		</section>
+	</div>
+	
+	<footer>
+		<p>Movie data provided by:</p>
+		<img src="./images/tmdb-logo.png" stlye="wdith:200px;height:auto;" alt="TMDB Logo"/>
+		<img src="./images/justwatch-logo.png" alt="Just Watch Logo"/><br>
+		<b>Tommy Delp - 2021 - IGME-330-0</b>
+	</footer>
+</div> <!-- end #app -->
+</body>
+</html>
