@@ -1,0 +1,350 @@
+@font-face{
+    font-family: 'Harlow';
+    src: url('../font/harlow.ttf');
+}
+
+#fontLoader{
+    font-family: Harlow;
+    font-size: 0px;
+}
+
+#project3
+{
+    width:1000px;
+    margin:auto;
+    font-size:1.5rem;
+}
+
+#directions
+{
+    text-align:center;
+    background-color:rgb(160, 133, 74);
+    border-radius:10px;
+    margin-bottom:4rem;
+    width:1000px;
+    margin:auto;
+    font-size:2rem;
+}
+
+body
+{
+    margin: 0em;
+    padding: 0em;
+    background-color:rgb(60, 71, 53);
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+img
+{
+    max-width:100%;
+    border-radius:10px;
+}
+
+/* Makes whole link 'box' clickable */
+.home a, .proposal a,.documentation a,.project a,.about-me a,.contact-info a
+{
+    display:block;
+}
+
+#fontLoader{
+    font-family: Harlow;
+    font-size: 0px;
+}
+
+#inline-picture
+{
+    display:block;
+    padding-top:4rem;
+    padding-bottom:4rem;
+    margin-left: auto; 
+    margin-right: auto;  
+    border-radius:10px;
+}
+
+/* Mobile Design */
+/***********************************************************************/
+.menu
+{
+    /* Flex */
+    display:flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width:100%;
+    height:auto;
+
+    /* Reseting list */
+    list-style:none;
+    margin:0rem;
+    padding: 0rem;
+}
+
+.home,.proposal,.documentation,.project
+{
+    
+    font-weight:bold;
+    border-radius:10px;
+    font-size:2.5rem;
+    border: 2px solid #F3E8EE;
+    background-color:rgb(160, 133, 74);
+    padding-left: 2rem;
+}
+
+h1
+{
+    color:#93B7BE;
+    padding:0rem 0rem 0rem 2rem; 
+    font-size: 2.7rem;
+    margin-top:0rem;
+    margin-bottom:0rem;
+}
+
+/* Did not use 'h2' because it ruined the block of text */
+
+.inline-heading
+{
+    font-weight:bold;
+    font-size:2.2rem;
+    color: #93B7BE;
+}
+
+.inline-heading2
+{
+    font-weight:bold;
+    font-size:2.6rem;
+    color: #93B7BE;
+}
+
+.summary
+{
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:"images"
+                        "main-text";
+}
+
+.reference-img
+{
+    grid-area:images;
+    width:100%;
+}
+
+.summary-text
+{
+    grid-area:main-text;
+    /* Calculates width to be 100% - padding so it doesn't overflow - Thank you to this! - https://stackoverflow.com/questions/21621584/padding-causes-horizontal-scroll-it-increases-the-width */
+    width: calc(100% - 30px);
+    padding: 30px 15px 30px 15px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    background-color: rgb(39, 54, 42);
+    border-radius:10px;
+    color:white;
+}
+
+.lower-menu
+{
+    /* Flex */
+    display:flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    width:100%;
+    height:auto;
+
+    /* Reseting list */
+    list-style:none;
+    margin:0rem;
+    padding: 0rem;
+}
+
+.about-me, .contact-info
+{
+    font-size:3rem;
+    font-family:sans-serif;
+    border: 2px solid #F3E8EE;
+    
+    background-color:rgb(160, 133, 74);
+    padding-left: 2rem;
+}
+
+.about-me { border-top-left-radius: 10px; border-top-right-radius: 10px; }
+.contact-info { border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+
+/* Having no border in the middle */
+.about-me { border-bottom: none; }
+.contact-info { border-top: none; }
+/***********************************************************************/
+
+/*Desktop*/
+/***********************************************************************/
+@media screen and (min-width: 830px)
+{
+    .menu 
+    { 
+        flex-direction: row; 
+        justify-content: space-evenly
+    }
+
+    .home,.proposal,.documentation,.project 
+    { 
+        width:20%; 
+        border:3px solid #F3E8EE;
+        border-radius: 10px;
+        /* Change of spacing on desktop version */
+        font-size:1.5rem;
+        padding-top:1rem;
+        padding-bottom:1rem;
+        margin-bottom:1rem;
+        margin-top:2rem;
+
+        transition: border 1s;
+    }
+
+    .reference-img
+    {
+        padding-left:8rem;
+        padding-top:2rem;
+    } 
+
+    /* Includes header and breadcrumb */
+    .page-navigation
+    {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction:row-reverse;
+    }
+
+    .bread-crumbs 
+    { 
+        width: 50%; 
+    }
+
+    .about-me 
+    { 
+        border-bottom-left-radius: 10px;
+        margin-left: 3rem;
+    }
+    .contact-info 
+    { 
+        border-top-right-radius: 10px; 
+        margin-right: 3rem;
+        text-align:right;
+        padding-left:0rem;
+        padding-right:2rem;
+    }
+  
+    .about-me,.contact-info 
+    { 
+        /* Restore border */
+        border: 3px solid #F3E8EE;
+        width:50%;
+        font-size:2rem;
+
+        transition: border 1s;
+    }
+
+    h1
+    {
+        width: 50%;
+        margin-left:8rem;
+        margin-top:1rem;
+    }
+    
+    .summary
+    {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:"main-text images";
+        width:80%;
+        margin-left:5rem;
+    }
+
+    .summary-text
+    {
+        padding:2.5rem;
+        font-size:2rem;
+    }
+
+    .lower-menu
+    {
+        flex-direction: row;
+        margin-top:1rem;
+    }
+ 
+}
+/***********************************************************************/
+
+/* Font resizing and various fixes */
+/***********************************************************************/
+@media screen and (max-width: 1100px) and (min-width: 830px)
+{
+    .home,.proposal,.documentation,.project { font-size: 1.25rem; }
+    h1 { font-size: 3rem; }
+    .summary-text { font-size: 1.5rem; }
+    .reference-img { padding-left: 5rem; padding-top: 1.5rem; }
+}
+/***********************************************************************/
+
+.bread-crumbs
+{
+    padding-left: 2rem;
+    font-size: 2rem;
+}
+
+/* Text in the 'bread crumbs' */
+.bread-crumbs a { text-decoration:none; }
+
+.bread-crumbs { color: grey; }
+
+.bread-crumbs a { color: #93B7BE; }
+
+.bread-crumbs a:visited { color: #93B7BE; }
+
+/* Links */
+/***********************************************************************/
+
+/* Used for menu (top and bottom) links */
+li a:link
+{
+    text-decoration:none;
+    color:black;
+}
+
+li a:visited
+{
+    color:black;
+}
+
+li a:hover
+{
+    color:white;
+}
+
+li a:active
+{ 
+    color:#93B7BE;
+}
+
+.home:hover,.proposal:hover,.documentation:hover,.project:hover,.about-me:hover,.contact-info:hover
+{
+    border: 3px dashed #93B7BE;
+}
+
+.menu a li, .lower-menu a li  { color: black; }
+
+/* Used to Change font color of current page you are accessing in menu */
+
+.current-page-link a:link { color: #93B7BE; }
+
+.current-page-link a:visited{ color: #93B7BE; }
+
+/***********************************************************************/
+
+.source-link { font-size:2rem; }
+
+.source-link:link, .source-link:visited,.source-link:hover,.source-link:active 
+{ 
+    text-decoration:none; 
+    color:#93B7BE;
+}
