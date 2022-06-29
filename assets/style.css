@@ -1,3 +1,7 @@
+.nav-link {
+    font-size: 1.25rem;
+}
+
 a {
     color: darkgreen !important;
 }
@@ -5,19 +9,28 @@ a {
 a:hover {
     color: darkseagreen !important;
     text-decoration: none;
+    background-color: transparent !important;
+}
+
+.tight-paragraphs {
+    padding-top: 12px;
+}
+
+.tight-paragraphs p{
+    line-height: 0px;
+}
+.dark-green-border {
+    border: 5px solid #28a745;
+    margin: 0;
+    padding: 0;
+    background-color: #28a745;
 }
 
 .image-bounds {
-    max-width: 250px;
-    word-wrap: break-word;
+    max-width: 230px;
 }
 
-.horizontal-scrollbar {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-.vertical-scrollbar {
-    overflow-y: scroll;
-    max-height: 1280px;
+.image-shadow:hover {
+    -webkit-filter: drop-shadow(0px 2px 3px #666666);
+    filter: drop-shadow(0px 2px 3px #666666);
 }
