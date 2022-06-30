@@ -29,6 +29,10 @@ a:hover {
     background-color: transparent !important;
 }
 
+.bio {
+    font-size: .9rem;
+}
+
 .tight-paragraphs {
     padding-top: 12px;
 }
