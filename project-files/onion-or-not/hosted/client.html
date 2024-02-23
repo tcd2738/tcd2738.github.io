@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Onion or Not</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="/bundle.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">  
+</head>
+<body>
+  <section id="top">
+    <h1>Onion or Not</h1>
+    <h3 id="roundNum">Round: 0</h3>
+
+    <h2 class="hide topInfo" id="articleTitle"></h2>
+
+    <h3 id="winnerHolder"></h3>
+
+    <p class="topInfo" id="instructions">
+      Add as many players as you'd like, and then play through ten rounds of weird headlines.
+      The player with the most points at the end wins!
+    </p>
+
+    <form id="addUserForm" action="/addUser" method="post">
+      <label for="name">Name: </label>
+      <input id="nameField" type="text" name="name" />
+      <input type="submit" value="Add Player"/>
+    </form>
+    <p class="hide" id="playerErrorMessage">You need at least 1 player to play!</p>
+    
+    <button id="startButton" type="button">Begin!</button>
+    <button id="restartButton" class="hide" type="button">Play Again?</button>
+  </section>
+  <section id="content">
+    <section id="currentUsers"></section>
+
+    <button id="nextQuestion" class="hide" type="button">Get Next Question</button>
+  </section>
+  <section id="debug">
+    <button id="debugButton" type="button">Debug Mode</button>
+    <div id="responseHandler"></div>
+  </section>
+  <p>Created by Tommy Delp for IGME-430 @ RIT</p>
+</body>
+</html>

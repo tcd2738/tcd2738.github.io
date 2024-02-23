@@ -1,0 +1,134 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+p, label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+  text-align: center;
+}
+
+button, input[type=submit] {
+  margin: .8em;
+  background-color: rgb(0, 107, 58);
+  border: none;
+  padding: .5em;
+
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: .75em;
+}
+button:hover, input[type=submit]:hover {
+  color:rgb(194, 245, 223);
+}
+button:active, input[type=submit]:active {
+  box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.24);
+}
+
+.hide {
+  display: none;
+}
+
+#top {
+  text-align: center;
+}
+
+#top h1 {
+  background-color: rgb(0, 107, 58);
+  margin: .4em 0;
+  padding: .5em 0;
+
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 2em;
+}
+
+#top p {
+  margin: auto;
+  width: 95%;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+}
+
+.topInfo {
+  width: 80%;
+  
+  padding-bottom: .75em;
+}
+
+#articleTitle {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin: auto;
+}
+
+#addUserForm {
+  width: 30%;
+  border-style: solid;
+  margin: auto;
+}
+
+#content {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#currentUsers {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.player {
+  padding: 0 1em 0 1em;
+  display: flex;
+  flex-direction: column;
+
+  border-style: solid;
+  margin: 0 1em 0 1em;
+}
+
+.playerName {  
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25em;
+}
+
+.guessForm { 
+  display: flex;
+  flex-direction: column;
+}
+
+.guessRadioButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.pointsAndStreaks {
+  display: flex;
+  justify-content: space-around;
+}
+
+.points {
+  font-weight: bold;
+}
+
+.streaks {
+  font-weight: bold;
+}
+
+#debug {
+  text-align: center;
+}
+
+#responseHandler {
+  font-size: 1em;
+}
